@@ -10,4 +10,4 @@ Used bootstrap for responsive pages
 * Here we are showing listing of public repositories by default, using API "https://api.github.com/repositories" 
 * Search functionality which is showing results of public repos using API "https://api.github.com/search/repositories"
 
-### Used Paginator for showing 5 data/ result per page
+### Used Paginator for showing limited data / records per page ( number of results : 5 )
