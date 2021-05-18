@@ -11,6 +11,7 @@ import {RouterModule} from '@angular/router';
 import { HomeModule } from './home/home.module';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {FormsModule} from '@angular/forms';
 // 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
+    FormsModule,
     PaginationModule.forRoot()
   ],
   exports:[

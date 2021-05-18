@@ -11,12 +11,15 @@ import { Subscription } from "rxjs";
 export class PaginatorComponent implements OnInit {
 
   public dataSize: number = 0;
+  public page:any;
+  
   private searchDataSubscription: Subscription = new Subscription;
   private onInitDataSubscription: Subscription = new Subscription;
-
   constructor(private homeDataSvc: HomeData, private commonSvc: CommonSvc) { }
 
   ngOnInit(): void {
+
+    this.page = this.homeDataSvc.getPageObj();
 
     if(this.searchDataSubscription){
       this.searchDataSubscription.unsubscribe();
@@ -36,6 +39,12 @@ export class PaginatorComponent implements OnInit {
 
   getPages() {
     this.dataSize = this.homeDataSvc.getRepoDataSize();
+  }
+
+  pageChanged(event: any): void {
+    this.page = this.homeDataSvc.getPageObj();
+    this.page.currentPage = event.page;
+    this.commonSvc.pageChangeEmmiter.emit(this.page);
   }
 
 }

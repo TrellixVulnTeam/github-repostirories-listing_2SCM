@@ -12,6 +12,7 @@ import { Subscription } from "rxjs";
 export class HomeComponent implements OnInit {
   public repoData : any;
   private searchSubscription = new Subscription;
+  public chunkData: any;
   constructor(private homeDataSvc: HomeData, private commonSvc: CommonSvc) { 
     this.commonSvc.triggerLoader.emit(true);
   }
@@ -23,6 +24,8 @@ export class HomeComponent implements OnInit {
           this.homeDataSvc.setRepoData(res);
           this.commonSvc.onInitData.emit();
           this.commonSvc.triggerLoader.emit(false);
+          this.loadChunkData(this.homeDataSvc.getPageObj());
+
       }
 
     } )
@@ -32,11 +35,24 @@ export class HomeComponent implements OnInit {
     }
     this.searchSubscription = this.commonSvc.searchDataEmmiter.subscribe(() => {
       this.getRepoData();
+      this.loadChunkData(this.homeDataSvc.getPageObj());
+    })
+
+    this.commonSvc.pageChangeEmmiter.subscribe((page)=>{
+      this.loadChunkData(page);
     })
   }
 
   public getRepoData(){
     this.repoData = this.homeDataSvc.getRepoData();
+  }
+
+  private loadChunkData(page?:any){
+    this.getRepoData();
+    console.log(page);
+    const startItem = (page.currentPage - 1) * page.itemsPerPage;
+    const endItem = page.currentPage * page.itemsPerPage;
+    this.chunkData =this.repoData.slice(startItem, endItem);
   }
   
 }

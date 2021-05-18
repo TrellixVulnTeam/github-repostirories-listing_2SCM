@@ -10,6 +10,10 @@ export class HomeData {
     private baseUrl: string = 'https://api.github.com/search/repositories?';
 
     private repoData:any;
+    public page = {
+        currentPage: 1,
+        itemsPerPage: 5
+      }
     
     constructor(private http:HttpClient){
 
@@ -39,6 +43,10 @@ export class HomeData {
             len = this.getRepoData().length;
         }
         return len;
+    }
+
+    getPageObj() {
+        return this.page;
     }
 
 }

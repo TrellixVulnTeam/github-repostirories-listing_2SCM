@@ -1,13 +1,10 @@
 <app-navbar></app-navbar>
-
-<div class="container">
-    <app-paginator></app-paginator>
-</div>
-
 <div class="loader" *ngIf='showLoader'>
     <div class="spinner-border text-success" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-
+<div class="container">
+    <app-paginator></app-paginator>
+</div>
 <router-outlet></router-outlet>

@@ -1,4 +1,9 @@
 .card {
     // box-shadow: 0 10px 10px -10px #777;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 3px 8px;
+    img {
+        padding: 2px;
+        border: 1px solid grey;
+        border-radius: 2px;
+    }
 }
